@@ -1,5 +1,5 @@
 // controllers/review.js
-import Review from "../models/Review.js";   // Review model banana padega
+import Review from "../models/review.js";   // Review model banana padega
 
 // POST /api/reviews/create
 export const createReview = async (req, res) => {
