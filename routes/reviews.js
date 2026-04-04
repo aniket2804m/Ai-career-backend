@@ -3,7 +3,7 @@
 import express from "express";
 
 import Review from "../models/review.js";
-import Institute from "../models/institute.js";
+import Institute from "../models/institute.model.js";
 
 
 const router = express.Router()

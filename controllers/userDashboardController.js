@@ -1,5 +1,5 @@
 // controllers/userDashboardController.js
-import User from "../models/user.js";
+import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 
 // GET /api/user/enrolled-courses

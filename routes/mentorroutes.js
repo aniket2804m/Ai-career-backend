@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
-import MentorProfile from "../models/mentorprofile.js";
-import MentorGroup from "../models/mentorgroup.js";
+import MentorProfile from "../models/mentorprofile.model.js";
+import MentorGroup from "../models/mentorgroup.model.js";
 import authMiddleware from "../middleware/verifyToken.js";
 
 
