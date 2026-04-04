@@ -1,6 +1,6 @@
 // controllers/quizController.js
 import Quiz from "../models/quiz.js";
-import QuizResult from "../models/quizResult.js";
+import QuizResult from "../models/quizresult.js";
 
 // ─── ADMIN — Quiz banao ──────────────────────────────────
 

@@ -2,7 +2,7 @@
 
 import express from "express";
 
-import Review from "../models/Reviews.js";
+import Review from "../models/review.js";
 import Institute from "../models/institute.js";
 
 
