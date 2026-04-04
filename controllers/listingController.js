@@ -1,4 +1,4 @@
-import Listing from "../models/Listing.js";
+import Listing from "../models/listing.js";
 import cloudinary from "../config/cloudinary.js";
 
 // POST - Create Listing

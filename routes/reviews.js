@@ -2,8 +2,8 @@
 
 import express from "express";
 
-import Review from "../models/Reviews.js";
-import Institute from "../models/Institute.js";
+import Review from "../models/reviews.js";
+import Institute from "../models/institute.js";
 
 
 const router = express.Router()

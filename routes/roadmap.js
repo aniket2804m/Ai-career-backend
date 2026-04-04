@@ -3,7 +3,7 @@ import express from "express";
 const router   = express.Router();
 // const Anthropic = require('@anthropic-ai/sdk');
 
-import Roadmap from "../models/Roadmap.js";
+import Roadmap from "../models/roadmap.js";
 
 // ✅ Client ek baar banao — har request pe nahi
 // const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });

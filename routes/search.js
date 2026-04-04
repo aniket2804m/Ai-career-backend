@@ -1,5 +1,5 @@
 import express from "express";
-import Institute from "../models/Institute.js";
+import Institute from "../models/institute.js";
 
 const router = express.Router();
 
