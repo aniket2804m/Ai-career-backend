@@ -1,6 +1,6 @@
 // controllers/adminController.js
 import Listing from "../models/listing.js";   // ✅ Course = Listing model tumhara
-import User from "../models/user.js";
+import User from "../models/User.js";
 
 // ─── COURSES (Listings) ──────────────────────────────────
 
