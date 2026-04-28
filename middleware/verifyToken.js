@@ -1,25 +1,25 @@
 import jwt from "jsonwebtoken";
 
-// Middleware function to verify JWT token
 const verifyToken = (req, res, next) => {
-    // Heder se token nikalna
-    const token = req.headers.authorization?.split(" ")[1];
+  const authHeader = req.headers.authorization;
 
-    // check token exist
-    if(!token) return res.status(401).json({message: "No token"});
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "No token provided" });
+  }
 
-    // token verify + decode
-    try {
-        const decoded = jwt.verify(token, "secrete123");
-        req.user = decoded;
+  const token = authHeader.split(" ")[1];
 
-        next();
-    } catch (err) {
-        return res.status(401).json({message: "Invalid token"});
-    }
+  try {
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET || "secrete123"
+    );
 
-}
-
-
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+};
 
 export default verifyToken;
