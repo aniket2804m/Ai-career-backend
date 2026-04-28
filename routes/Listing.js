@@ -9,7 +9,8 @@ import {
   getAllListings,
   getListingById,
   deleteListing,
-  updateListing
+  updateListing,
+  reportAnalytics 
 } from "../controllers/listingController.js";     // ✅ controller import
 
 // Routes
