@@ -4,7 +4,7 @@ import cloudinary from "../config/cloudinary.js";
 // POST - Create Listing
 export const createListing = async (req, res) => {
   try {
-    const { title, description, price, location, amenities } = req.body;
+    const { title, description, date, location, amenities } = req.body;
 
     // Validate
     if (!title || !price) {
@@ -12,12 +12,13 @@ export const createListing = async (req, res) => {
     }
 
     // Cloudinary se images URL lo
-    const images = req.files && req.files.length > 0
-      ? req.files.map(file => ({
-          url: file.path,
-          public_id: file.filename
-        }))
-      : [];
+    const images =
+      req.files && req.files.length > 0
+        ? req.files.map((file) => ({
+            url: file.path,
+            public_id: file.filename,
+          }))
+        : [];
 
     const newListing = new Listing({
       title,
@@ -25,15 +26,15 @@ export const createListing = async (req, res) => {
       price,
       location,
       amenities,
-      images,           // ✅ images add ki
-      host: req.user.id
+      images, // ✅ images add ki
+      host: req.user.id,
     });
 
     await newListing.save();
 
     res.status(201).json({
       message: "Listing Created Successfully",
-      listing: newListing
+      listing: newListing,
     });
   } catch (err) {
     res.status(500).json({ message: "Server Error" });
@@ -124,10 +125,10 @@ export const updateListing = async (req, res) => {
     const updateData = {};
 
     // Text fields
-    const { title, description, price, location, amenities } = req.body;
+    const { title, description, date, location, amenities } = req.body;
     if (title) updateData.title = title;
     if (description) updateData.description = description;
-    if (price) updateData.price = price;
+    if (date) updateData.date = date;
     if (location) updateData.location = location;
     if (amenities) updateData.amenities = amenities;
 
@@ -141,9 +142,9 @@ export const updateListing = async (req, res) => {
       }
 
       // Nayi images set karo
-      updateData.images = req.files.map(file => ({
+      updateData.images = req.files.map((file) => ({
         url: file.path,
-        public_id: file.filename
+        public_id: file.filename,
       }));
     }
 
@@ -151,21 +152,20 @@ export const updateListing = async (req, res) => {
     const updatedListing = await Listing.findByIdAndUpdate(
       req.params.id,
       updateData,
-      { new: true } // Updated document return karo
+      { new: true }, // Updated document return karo
     );
 
     res.status(200).json({
       message: "Listing Updated Successfully",
-      listing: updatedListing
+      listing: updatedListing,
     });
-
   } catch (err) {
     console.error("UPDATE ERROR:", err);
     res.status(500).json({ message: "Server Error", error: err.message });
   }
+};
 
-
-  // Analytics 
+// Analytics
 
 export const reportAnalytics = async (req, res) => {
   try {
@@ -173,16 +173,14 @@ export const reportAnalytics = async (req, res) => {
       {
         $group: {
           _id: { month: { $month: "$date" } },
-          totalReports: { $sum: 1 }
-        }
+          totalReports: { $sum: 1 },
+        },
       },
-      { $sort: { "_id.month": 1 } }
+      { $sort: { "_id.month": 1 } },
     ]);
 
     res.json(data);
   } catch (err) {
     res.status(500).json({ message: "Error fetching report analytics" });
   }
-};
-
 };
