@@ -163,4 +163,27 @@ export const updateListing = async (req, res) => {
     console.error("UPDATE ERROR:", err);
     res.status(500).json({ message: "Server Error", error: err.message });
   }
+
+
+  // Analytics 
+  import Listing from "../models/Listing.js";
+
+export const reportAnalytics = async (req, res) => {
+  try {
+    const data = await Listing.aggregate([
+      {
+        $group: {
+          _id: { month: { $month: "$date" } },
+          totalReports: { $sum: 1 }
+        }
+      },
+      { $sort: { "_id.month": 1 } }
+    ]);
+
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching report analytics" });
+  }
+};
+
 };

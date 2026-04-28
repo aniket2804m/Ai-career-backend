@@ -18,5 +18,6 @@ router.get("/", getAllListings);
 router.get("/:id", getListingById);
 router.delete("/:id", verifyToken, isAdmin, deleteListing);
 router.put("/:id", verifyToken, isAdmin, upload.array("images", 10), updateListing);
+router.get("/report-analytics", reportAnalytics);
 
 export default router;

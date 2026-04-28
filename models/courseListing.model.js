@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const ListingSchema = new mongoose.Schema({
     title: {type: String, required: true},
     description: String,
-    price: {type: Number, required: true},
+    // price: {type: Number, required: true},
+    date: { type: Date, default: Date.now },
     location: String,
     amenities: String,
     images: [              // ✅ String se Array mein change kiya
