@@ -166,7 +166,6 @@ export const updateListing = async (req, res) => {
 
 
   // Analytics 
-  import Listing from "../models/Listing.js";
 
 export const reportAnalytics = async (req, res) => {
   try {
