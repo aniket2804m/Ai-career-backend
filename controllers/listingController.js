@@ -7,10 +7,12 @@ export const createListing = async (req, res) => {
     const { title, description, date, location, amenities } = req.body;
 
     // Validate
-    if (!title || !price) {
+    if (!title || !date) {
       return res.status(400).json({ message: "Required field missing" });
     }
 
+    console.log("USER:", req.user);
+    console.log("FILES:", req.files);
     // Cloudinary se images URL lo
     const images =
       req.files && req.files.length > 0
@@ -23,7 +25,7 @@ export const createListing = async (req, res) => {
     const newListing = new Listing({
       title,
       description,
-      price,
+      date,
       location,
       amenities,
       images, // ✅ images add ki
@@ -63,11 +65,11 @@ export const getAllListings = async (req, res) => {
       query.amenities = { $regex: category, $options: "i" };
     }
 
-    // Step 5: Agar price range hai toh add karo
+    // Step 5: Agar date range hai toh add karo
     if (minPrice || maxPrice) {
-      query.price = {};
-      if (minPrice) query.price.$gte = Number(minPrice);
-      if (maxPrice) query.price.$lte = Number(maxPrice);
+      query.date = {};
+      if (minPrice) query.date.$gte = new Date(minPrice);
+      if (maxPrice) query.date.$lte = new Date(maxPrice);
     }
 
     // Step 6: Query run karo

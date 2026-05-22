@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 import verifyToken from "../middleware/verifyToken.js";
 import { isAdmin } from "../middleware/authorizeRole.js";
-import upload from "../middleware/upload.js";     // ✅ multer cloudinary
+import upload from "../middleware/upload.js";    
  
 import {
   createListing,
@@ -11,7 +11,7 @@ import {
   deleteListing,
   updateListing,
   reportAnalytics 
-} from "../controllers/listingController.js";     // ✅ controller import
+} from "../controllers/listingController.js";     
 
 // Routes
 router.post("/create", verifyToken, upload.array("images", 10), createListing);
