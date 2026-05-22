@@ -30,7 +30,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",        // Local development
   "http://localhost:3000",        // Backup local
-  "https://ai-career-backend-a9v4.onrender.com",       // Production frontend URL
+  process.env.FRONTEND_URL,       // Production frontend URL
   // Render par ye environment variable set karenge
 ];
 
